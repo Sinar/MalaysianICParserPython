@@ -8,7 +8,9 @@ import json
 
 
 class ICParser:
-    def __init__(self,ic):
+    def __init__(self,ic,state_file=None,country_file=None):
+        self.state_file = state_file
+        self.country_file = country_file
         ic_with_dash = r'\d{6}-\d{2}-\d{4}'
         ic_digits_only = r'\d{12}'
         ic_split_pattern = r'(\d{6})(\d{2})(\d{4})'
@@ -43,9 +45,9 @@ class ICParser:
             self.gender = 'F'
     
     def set_birth_place(self):
-        try:
-            data = json.load(open('data/state_code.json'))
-        except IOError:
+        if self.state_file:
+            data = json.load(open(self.state_file))
+        else:
             local = NRDLocal()
             data = local.data
 
@@ -54,11 +56,12 @@ class ICParser:
                 self.birth_place = i
                 return
         
-        try:
-            data = json.load(open('data/country_code.json'))
-        except IOError:
+        if self.country_file:
+            data = json.load(open(self.country_file))
+        else:
             oversea = NRDOversea()
             data = oversea.data
+
         for i in data:
             if self.ic_token[1] == data[i]:
                 self.birth_place = i
