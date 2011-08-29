@@ -73,12 +73,18 @@ class NRICTestCase(unittest.TestCase):
         ic = '010312145543'
         self.assertRaises(InvalidDateException,ICParser,ic) 
        
-    def test_birthplace_valid(self):
+    def test_birthplace_local_valid(self):
         ic = '840312145543'
         parser = ICParser(ic)
         birth_place = 'Wilayah Persekutuan (Kuala Lumpur)'
         self.assertEqual(parser.birth_place,birth_place)
     
+    def test_birthplace_oversea_valid(self):
+        ic = '840312895543'
+        parser = ICParser(ic)
+        birth_place = 'Japan,Korea Selatan,Korea Utara,Taiwan'
+        self.assertEqual(parser.birth_place,birth_place)
+   
     def test_birthplace_invalid(self):
         ic = '840312995543'
         self.assertRaises(InvalidBirthPlace,ICParser,ic)
