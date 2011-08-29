@@ -4,6 +4,8 @@ from dateutil.relativedelta import relativedelta
 import datetime
 from scraper.nrd_local import NRDLocal
 from scraper.nrd_oversea import NRDOversea
+import json
+
 
 class ICParser:
     def __init__(self,ic):
@@ -41,15 +43,13 @@ class ICParser:
             self.gender = 'F'
     
     def set_birth_place(self):
-        local_source = NRDLocal()
-        country_source = NRDOversea()
-        data = local_source.data
+        data = json.load(open('data/state_code.json'))
         for i in data:
             if self.ic_token[1] in data[i]:
                 self.birth_place = i
                 return
         
-        data = country_source.data
+        data = json.load(open('data/country_code.json'))
         for i in data:
             if self.ic_token[1] == data[i]:
                 self.birth_place = i
