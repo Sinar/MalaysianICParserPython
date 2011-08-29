@@ -1,6 +1,6 @@
 import re
 from dateutil.parser import parse
-
+import datetime
 
 class ICParser:
     def __init__(self,ic):
@@ -16,6 +16,9 @@ class ICParser:
             raise InvalidFormatException(ic)
 
         self.birth_date = parse(ic_token[0]).date()
+        if self.birth_date > datetime.date.today():
+            raise InvalidDateException(self.birth_date)
+
 
 class InvalidFormatException(Exception):
     def __init__(self,value):
