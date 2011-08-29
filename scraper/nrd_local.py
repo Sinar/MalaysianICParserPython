@@ -1,6 +1,6 @@
 import urllib2
 from BeautifulSoup import BeautifulSoup
-
+import json
 
 class NRDLocal:
     def __init__(self):
@@ -15,6 +15,8 @@ class NRDLocal:
             row = i.findAll('td')
             self.data[row[0].text] = row[1].text.split(',')
     
+    def to_json(self):
+        return json.dumps(self.data)
                
                 
 
