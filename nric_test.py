@@ -27,7 +27,7 @@ class NRICTestCase(unittest.TestCase):
     def test_date_format_valid(self):
         ic = '840312145543'
         parser = ICParser(ic)
-        self.assertTrue(parser.birth_date())
+        self.assertTrue(parser.birth_date)
     
     def test_date_format_invalid(self):
         ic = '841331145543'
@@ -42,7 +42,7 @@ class NRICTestCase(unittest.TestCase):
         ic = '840312145543'
         parser = ICParser(ic)
         birthdate = datetime.date(84,03,12)
-        self.assertEqual(parser.birth_date(),birthdate)
+        self.assertEqual(parser.birth_date,birthdate)
 
     def test_ic_less_12_year(self):
         ic = '010312145543'
