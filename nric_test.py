@@ -31,7 +31,6 @@ class NRICTestCase(unittest.TestCase):
     
     def test_date_format_invalid(self):
         ic = '841331145543'
-        parser = ICParser(ic)
         self.assertRaises(ValueError,ICParser,ic)
     
     def test_date_in_future(self):
@@ -51,8 +50,8 @@ class NRICTestCase(unittest.TestCase):
     def test_birthplace_valid(self):
         ic = '840312145543'
         parser = ICParser(ic)
-        states = 'Wilayah Persekutuan (Kuala Lumpur)'
-        self.assertEqual(parser.states(),states)
+        birth_place = 'Wilayah Persekutuan (Kuala Lumpur)'
+        self.assertEqual(parser.birth_place,birth_place)
     
     def test_birthplace_invalid(self):
         ic = '840312145543'
