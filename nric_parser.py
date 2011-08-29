@@ -3,6 +3,7 @@ from dateutil.parser import parse
 from dateutil.relativedelta import relativedelta
 import datetime
 
+
 class ICParser:
     def __init__(self,ic):
         ic_with_dash = r'\d{6}-\d{2}-\d{4}'
@@ -36,7 +37,11 @@ class ICParser:
             self.gender = 'M'
         else:
             self.gender = 'F'
-      
+    
+    def set_birth_pace(self):
+        pass      
+
+
 class InvalidFormatException(Exception):
     def __init__(self,value):
         self.value = value
