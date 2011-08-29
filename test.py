@@ -57,7 +57,21 @@ class NRICTestCase(unittest.TestCase):
     def test_birthplace_invalid(self):
         ic = '840312995543'
         self.assertRaises(InvalidBirthPlace,ICParser,ic)
+
+    def test_birthplace_data_on_file(self):
+        ic = '840312145543'
+        parser = ICParser(ic,
+                 state_file='data/state_code.json',
+                 country_file='data/country_code.json')
+        birth_place = 'Wilayah Persekutuan (Kuala Lumpur)'
+        self.assertEqual(parser.birth_place,birth_place)
     
+    def test_birthplace_data_bad_file(self):
+        ic = '840312145543'
+        self.assertRaises(IOError,ICParser,ic,
+                 state_file='data/state_bad.json',
+                 country_file='data/country_bad.json')
+ 
     def test_gender_male(self):
         ic = '840312145543'
         parser = ICParser(ic)
