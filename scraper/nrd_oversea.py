@@ -39,9 +39,15 @@ class NRDOversea:
         for i in tbody[0].findAll('tr')[2:]:
             row = i.findAll('td')
             if row[0].text != '&nbsp;':
-                self.data[row[0].text] = row[1].text
-            self.data[row[2].text] = row[3].text
+                self.assemble_data(row[1].text,row[0].text)
+            self.assemble_data(row[3].text,row[2].text)
     
+    def assemble_data(self,key,value):
+        if self.data.get(key):
+            self.data[key].append(value)
+        else:
+            self.data[key] = [value]
+  
     def to_json(self):
         return json.dumps(self.data)
                

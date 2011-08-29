@@ -77,22 +77,25 @@ class ICParser:
             local = NRDLocal()
             data = local.data
 
-        for i in data:
-            if self.ic_token[1] in data[i]:
-                self.birth_place = i
-                return
-        
+        self.birth_place = ''
+
+        try:
+            self.birth_place = data[self.ic_token[1]]
+            return
+        except KeyError:
+            pass            
+
         if self.country_file:
             data = json.load(open(self.country_file))
         else:
             oversea = NRDOversea()
             data = oversea.data
 
-        for i in data:
-            if self.ic_token[1] == data[i]:
-                self.birth_place = i
-                return
-        raise InvalidBirthPlace(self.ic_token[1])
+        try: 
+            self.birth_place = ','.join(data[self.ic_token[1]])
+        except KeyError:
+            raise InvalidBirthPlace(self.ic_token[1])
+
 
 class InvalidFormatException(Exception):
     def __init__(self,value):
