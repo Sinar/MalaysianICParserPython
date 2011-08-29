@@ -43,13 +43,22 @@ class ICParser:
             self.gender = 'F'
     
     def set_birth_place(self):
-        data = json.load(open('data/state_code.json'))
+        try:
+            data = json.load(open('data/state_code.json'))
+        except IOError:
+            local = NRDLocal()
+            data = local.data
+
         for i in data:
             if self.ic_token[1] in data[i]:
                 self.birth_place = i
                 return
         
-        data = json.load(open('data/country_code.json'))
+        try:
+            data = json.load(open('data/country_code.json'))
+        except IOError:
+            oversea = NRDOversea()
+            data = oversea.data
         for i in data:
             if self.ic_token[1] == data[i]:
                 self.birth_place = i
