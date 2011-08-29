@@ -19,6 +19,9 @@ Requirement
 ============
 - python-dateutil
 - BeautifulSoup (Used in the scraper)
+- Nose (Used in unittest)
+
+This is tested on python 2.7, I didn't tried on 2.6 yet. 
 
 ======
 Usage
