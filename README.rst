@@ -2,10 +2,10 @@
 Malaysia IC Parser For Python
 ==============================
 
-The format of Malaysia Identification Card can be found at _Wikipedia
+The format of Malaysia Identification Card can be found at Wikipedia_
 
 
-Datasource for State Code can be found at _LocalCode and _CountryCode
+Datasource for State Code can be found at LocalCode_ and CountryCode_
 
 
 The scraper is in the scraper folder, usage guide coming soon
