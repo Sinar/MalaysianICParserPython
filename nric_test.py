@@ -54,7 +54,7 @@ class NRICTestCase(unittest.TestCase):
         self.assertEqual(parser.birth_place,birth_place)
     
     def test_birthplace_invalid(self):
-        ic = '840312145543'
+        ic = '840312995543'
         self.assertRaises(InvalidBirthPlace,ICParser,ic)
     
     def test_gender_male(self):
