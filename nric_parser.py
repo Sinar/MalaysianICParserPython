@@ -25,7 +25,7 @@ class ICParser:
     def set_birth_date(self):
         self.birth_date = parse(self.ic_token[0]).date()
         if self.birth_date > datetime.date.today():
-            raise InvalidDateException(self.birth_date)
+            raise DateInFutureException(self.birth_date)
 
         today = datetime.date.today()
         date_diff = relativedelta(today,self.birth_date)
@@ -78,4 +78,11 @@ class InvalidBirthPlace(Exception):
     
     def __str__(self):
         return repr(self.value)
-   
+
+
+class DateInFutureException(Exception):
+    def __init__(self,value):
+        self.value = value
+    
+    def __str__(self):
+        return repr(self.value)

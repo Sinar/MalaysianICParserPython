@@ -5,6 +5,7 @@ from nric_parser import ICParser
 from nric_parser import InvalidFormatException
 from nric_parser import InvalidDateException
 from nric_parser import InvalidBirthPlace
+from nric_parser import DateInFutureException
 
 class NRICTestCase(unittest.TestCase):
 
@@ -35,7 +36,7 @@ class NRICTestCase(unittest.TestCase):
     
     def test_date_in_future(self):
         ic = '120312145543'
-        self.assertRaises(InvalidDateException,ICParser,ic) 
+        self.assertRaises(DateInFutureException,ICParser,ic) 
     
     def test_date_in_past(self):
         ic = '840312145543'
