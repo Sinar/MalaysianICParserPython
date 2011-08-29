@@ -36,7 +36,7 @@ class NRICTestCase(unittest.TestCase):
     
     def test_date_in_future(self):
         ic = '120312145543'
-        self.assertRaise(InvalidDateException,ICParser,ic) 
+        self.assertRaises(InvalidDateException,ICParser,ic) 
     
     def test_date_in_past(self):
         ic = '840312145543'
@@ -46,7 +46,7 @@ class NRICTestCase(unittest.TestCase):
 
     def test_ic_less_12_year(self):
         ic = '010312145543'
-        self.assertRaise(InvalidDateException,ICParser,ic) 
+        self.assertRaises(InvalidDateException,ICParser,ic) 
        
     def test_birthplace_valid(self):
         ic = '840312145543'
@@ -56,7 +56,7 @@ class NRICTestCase(unittest.TestCase):
     
     def test_birthplace_invalid(self):
         ic = '840312145543'
-        self.assertRaise(InvalidBirthPlace,ICParser,ic)
+        self.assertRaises(InvalidBirthPlace,ICParser,ic)
     
     def test_gender_male(self):
         ic = '840312145543'
