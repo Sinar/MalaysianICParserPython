@@ -1,5 +1,5 @@
 import re
-import datetime
+from dateutil.parser import parse
 
 
 class ICParser:
@@ -9,12 +9,13 @@ class ICParser:
         ic_split_pattern = r'(\d{6})(\d{2})(\d{4})'
         if re.match(ic_digits_only,ic):
             ic_token = re.split(ic_split_pattern,ic)
-            ic_token = [i for i in splitted if i]
+            ic_token = [i for i in ic_token if i]
         elif re.match(ic_with_dash,ic):
             ic_token = ic.split('-')
         else:
             raise InvalidFormatException(ic)
-         
+
+        self.birth_date = parse(ic_token[0]).date()
 
 class InvalidFormatException(Exception):
     def __init__(self,value):

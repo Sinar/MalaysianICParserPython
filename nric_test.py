@@ -41,7 +41,7 @@ class NRICTestCase(unittest.TestCase):
     def test_date_in_past(self):
         ic = '840312145543'
         parser = ICParser(ic)
-        birthdate = datetime.date(84,03,12)
+        birthdate = datetime.date(1984,03,12)
         self.assertEqual(parser.birth_date,birthdate)
 
     def test_ic_less_12_year(self):
