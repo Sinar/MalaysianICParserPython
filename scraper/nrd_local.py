@@ -9,7 +9,6 @@ class NRDLocal:
         self.soup = BeautifulSoup(self.page)
         self.data = {}
     
-    def process(self):
         tbody = self.soup.findAll('tbody')
         for i in tbody[0].findAll('tr')[1:]:
             row = i.findAll('td')
