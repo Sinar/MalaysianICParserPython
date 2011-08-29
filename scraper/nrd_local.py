@@ -17,5 +17,8 @@ class NRDLocal:
     def to_json(self):
         return json.dumps(self.data)
                
-                
-
+    def to_json_file(self,filename):
+        fp = open(filename,'w+')
+        json.dump(self.data,fp)
+        fp.close()           
+     
