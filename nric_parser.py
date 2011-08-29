@@ -1,5 +1,6 @@
 import re
 from dateutil.parser import parse
+from dateutil.relativedelta import relativedelta
 import datetime
 
 class ICParser:
@@ -19,6 +20,17 @@ class ICParser:
         if self.birth_date > datetime.date.today():
             raise InvalidDateException(self.birth_date)
 
+        today = datetime.date.today()
+        date_diff = relativedelta(today,self.birth_date)
+        
+        if date_diff.years < 12:
+            raise InvalidDateException(self.birth_date)
+        
+        last_no = ic_token[2][-1]
+        if int(last_no) % 2:
+            self.gender = 'M'
+        else:
+            self.gender = 'F'
 
 class InvalidFormatException(Exception):
     def __init__(self,value):
