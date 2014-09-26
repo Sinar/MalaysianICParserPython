@@ -34,7 +34,7 @@ import json
 
 
 class ICParser:
-    def __init__(self,ic,state_file=None,country_file=None):
+    def __init__(self,ic,state_file='data/state_code.json',country_file='data/country_code.json'):
         self.state_file = state_file
         self.country_file = country_file
         ic_with_dash = r'\d{6}-\d{2}-\d{4}'
